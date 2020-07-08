@@ -176,7 +176,7 @@ int main (int argc, char** argv)
         if(streamIterator == stream.end())
             streamIterator = stream.begin();
 
-        viewer->spinOnce (100);
+        viewer->spinOnce ();
         
     } 
 }
