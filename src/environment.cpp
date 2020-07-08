@@ -44,9 +44,9 @@ void cityBlock(pcl::visualization::PCLVisualizer::Ptr& viewer,
     // ----------------------------------------------------
 
     pcl::PointCloud<pcl::PointXYZI>::Ptr filtered_cloud = 
-        pointProcessorI->FilterCloud(inputCloud,0.5,
-        Eigen::Vector4f(-10,-6,-2,1),
-        Eigen::Vector4f(30,6,1,1));
+        pointProcessorI->FilterCloud(inputCloud,0.30,
+        Eigen::Vector4f(-10,-5,-2,1),
+        Eigen::Vector4f(30,5,1,1));
 
     std::pair<pcl::PointCloud<pcl::PointXYZI>::Ptr, pcl::PointCloud<pcl::PointXYZI>::Ptr> segmentCloud =  
         pointProcessorI->SegmentPlane(filtered_cloud, 50,.18);
@@ -55,11 +55,11 @@ void cityBlock(pcl::visualization::PCLVisualizer::Ptr& viewer,
     renderPointCloud(viewer,segmentCloud.second,"road",Color(0,1,0));
  
     std::vector<pcl::PointCloud<pcl::PointXYZI>::Ptr> cloudClusters = 
-        pointProcessorI->Clustering(segmentCloud.first, 0.5, 10, 500);
+        pointProcessorI->Clustering(segmentCloud.first, 0.58, 10, 500);
 
     int clusterId = 0;
     std::vector<Color> colors = {
-        Color(1,1,0), Color(0,0,1), Color(0,1,1)
+        Color(0,0.7,0.7), Color(0,0,1), Color(0,1,1)
         };
 
     for(pcl::PointCloud<pcl::PointXYZI>::Ptr cluster : cloudClusters)
